@@ -7,5 +7,5 @@ const countriesController = require("./countriesController")
 
 router.use("/countries", countriesController)
 router.use("/activity", activityController)
-//pitooooooooooooooooooooooooo
+
 module.exports = router;
