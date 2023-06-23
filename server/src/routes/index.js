@@ -2,10 +2,10 @@ const { Router } = require("express");
 
 const router = Router();
 
-const activityController = require("./activityController")
-const countriesController = require("./countriesController")
+const activityController = require("./controllers/activityController")
+const countriesController = require("./controllers/countriesController")
 
 router.use("/countries", countriesController)
-router.use("/activity", activityController)
+router.use("/activities", activityController)
 
 module.exports = router;
