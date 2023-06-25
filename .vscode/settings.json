@@ -1,0 +1,6 @@
+{
+    "editor.bracketPairColorization.enabled": true,
+    "editor.detectIndentation": true,
+    "editor.guides.highlightActiveIndentation": true,
+    "editor.guides.indentation": false
+}

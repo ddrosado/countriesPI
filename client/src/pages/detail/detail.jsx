@@ -5,7 +5,7 @@ function Detail() {
   return (
 
       <div>
-        
+        <p>Detail</p>
       </div>
   )
 }
