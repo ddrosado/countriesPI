@@ -1,11 +1,11 @@
 import './navbar.styles.css'
-
 function Navbar() {
 
   return (
 
       <div>
-        <p>Navbar</p>
+        <p>Navbar:</p>
+        Home, Create, About
       </div>
   )
 }

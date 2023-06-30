@@ -5,7 +5,7 @@ function Cards() {
 
   return (
 
-      <div>
+      <div className='cards-container'>
      <Card/>
       </div>
   )

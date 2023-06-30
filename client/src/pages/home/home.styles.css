@@ -1,0 +1,4 @@
+.home-container{
+    border: 10px rgb(185, 110, 255) solid;
+    flex-wrap: wrap;
+}

@@ -18,10 +18,10 @@ try {
 // POST | /activities, recibirá todos los datos necesarios para crear una actividad turística y relacionarla con los países solicitados / toda la información debe ser recibida por body / debe crear la actividad turística en la base de datos, y esta debe estar relacionada con los países indicados(al menos uno)
 router.post("/", async (req, res) => {
 
-    const { name, difficulty, duration, season, country } = req.body;
+    const { name, type, difficulty, duration, season, country } = req.body;
 
     try {
-        let activity = await Activity.create({ name, difficulty, duration, season })
+        let activity = await Activity.create({ name, type, difficulty, duration, season })
         await activity.setCountries(country)
 
         const activityWithCountry = await Activity.findOne({

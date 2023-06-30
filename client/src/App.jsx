@@ -4,6 +4,7 @@ import Home from './pages/home/Home'
 import Detail from './pages/detail/Detail'
 import Create from './pages/create/Create'
 import Landing from './pages/landing/Landing'
+import About from './pages/about/About';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
                     <Route path='home' element={<Home/>}/>
                     <Route path='home/:id' element={<Detail/>}/>
                     <Route path='create' element={<Create/>}/>
+                    <Route path='about' element={<About/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
