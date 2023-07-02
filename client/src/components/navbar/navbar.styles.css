@@ -1,0 +1,30 @@
+.navbar-container{
+    position: absolute;
+    width: 100%;
+    height: 10vh;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.484);
+}
+
+.navbar-element{
+    font-size: 1.1em;
+    margin: auto;
+    display: flex;
+    font-weight: 400;
+    justify-content: flex-start;
+    color: #e5e5e5;
+    z-index: 2;
+    letter-spacing: 1px;
+}
+
+.social-media{
+    width: 48vw;
+}
+
+.right{
+    width: 10vh;
+}

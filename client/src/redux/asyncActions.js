@@ -28,19 +28,7 @@ const url = 'http://localhost:3001';
       }
     }
   );
-  
-  export const postActivity = createAsyncThunk(
-    'countries/postActivity',
-    async (payload) => {
-      try {
-        const response = await axios.post('https://renataloustalet.com.ar/apicountries/activity/', payload);
-        return response.data;
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  );
-  
+
   export const getByName = createAsyncThunk(
     'countries/getByName',
     async (name) => {
@@ -49,6 +37,21 @@ const url = 'http://localhost:3001';
         return response.data;
       } catch (error) {
         throw error.response.data.msg;
+      }
+    }
+  );
+  
+  
+// -------------------- activities --------------------
+
+  export const postActivity = createAsyncThunk(
+    'countries/postActivity',
+    async (payload) => {
+      try {
+        const response = await axios.post('https://renataloustalet.com.ar/apicountries/activity/', payload);
+        return response.data;
+      } catch (error) {
+        console.log(error);
       }
     }
   );

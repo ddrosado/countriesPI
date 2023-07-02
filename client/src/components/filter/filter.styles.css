@@ -1,11 +1,17 @@
-.selectclass {
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
+.select-class {
     box-sizing: border-box;
     letter-spacing: 0.05rem;
     outline: 0 none;
-    margin: 0;
-    padding: 0.5rem 5rem 0.5rem 0.2rem;
+    margin: auto;
+    padding: 0.5rem 4rem 0.5rem 0.2rem;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font-family: 'Poppins', sans-serif;
+    border: 1px solid #737373;
+    color: #525252;
+    background-color: #fff;
   }
   
   .selectclass-label {
@@ -48,11 +54,9 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    padding: 0 30px 0 10px;
+    padding: 0px 30px 0px 10px;
     border: 1px solid #e0e0e0;
     border-radius: 3px;
-    line-height: var(--height);
-    height: var(--height);
     background: #fff;
     margin: 0 5px 5px 0;
   }
@@ -61,3 +65,37 @@
   .selectclass-select::-ms-expand {
     display: none;
   }
+
+  /* ------------------------------------------------------- */
+
+.filters-container {
+
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  width: 70vw;
+  margin: auto;
+  padding: 10px;
+  background-color: #ffffff;
+  top: 55vh;
+  left: 0;
+  right: 0;
+  border-radius: 8px;
+  box-shadow: 5px 5px 20px 0px rgba(117,117,117,0.28);
+  -webkit-box-shadow: 5px 5px 20px 0px rgba(117,117,117,0.28);
+  -moz-box-shadow: 5px 5px 20px 0px rgba(117,117,117,0.28);
+  }
+
+.select-container{
+  margin:0;
+  height: 10vh;
+  padding: 3vh;
+}
+
+.select-text{
+  user-select: none;
+  padding-bottom: 1vh;
+  color: #525252;
+  }
+
+

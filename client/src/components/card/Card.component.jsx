@@ -6,7 +6,7 @@ import './card.styles.css';
 
 
 function Card() {
-  const countries = useSelector((state) => state.countries.countries);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,14 +17,14 @@ function Card() {
     <div>
       <Filter />
       <div className='card-container'>
-        {countries.map((country) => (
+        {/* {countries.map((country) => (
           <div key={country.id} className='card'>
             <img src={country.image} alt={country.name} className='flag' />
             <h1>{country.name}</h1>
             <h2>{country.continent}</h2>
             <button className='card-button'>Ver detalle</button>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
-import { getCountries } from "./asyncActions";
+import { getByName, getCountries, getDetail } from "./asyncActions";
 import { createSlice } from "@reduxjs/toolkit";
-import { orderAsc, orderDesc } from "./functions"
 
 const initialState = {
   countries: [],
@@ -19,19 +18,19 @@ const countriesSlice = createSlice({
   initialState,
   reducers: {
     // based on the given order ('Asc' or 'Desc')
-    sortAscDesc: (state, action) => {
-      const orderCountries = action.payload === 'asc'
-        ? state.countries.sort((a, b) => a.name.localeCompare(b.name))
-        : state.countries.sort((a, b) => b.name.localeCompare(a.name));
-        // localeCompare returns a number indicating whether a reference string comes before, or after, or is the same as the given string in sort order
-      state.countries = orderCountries;
-    },
     // based on population in ascending or descending order
-    sortByPopulation: (state, action) => {
-      const orderPopulation = action.payload === 'desc'
-      ? state.countries.sort(orderAsc)
-      : state.countries.sort(orderDesc);
-    state.population = [...orderPopulation];
+    sortAscDesc: (state, action) => {
+      let orderCountries;
+      if (action.payload === 'asc') {
+        orderCountries = state.countries.sort((a, b) => a.population - b.population);
+      } else if (action.payload === 'desc') {
+        orderCountries = state.countries.sort((a, b) => b.population - a.population);
+      } else if (action.payload === 'alphabeticDesc') {
+        orderCountries = state.countries.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (action.payload === 'alphabeticAsc') {
+        orderCountries = state.countries.sort((a, b) => a.name.localeCompare(b.name));
+      }    
+      state.population = [...orderCountries];
     },
     // based on the selected continent or returns all continents
     sortByContinent: (state, action) => {
@@ -60,10 +59,18 @@ const countriesSlice = createSlice({
         state.continents = action.payload;
         state.population = action.payload;
         state.activities = action.payload;
-        state.searchName = action.payload;
       })
       .addCase(getCountries.rejected, (state, action) => {
         state.error = action.error.message;
+      })
+      .addCase(getByName.fulfilled, (state, action) => {
+        state.countries = action.payload;
+      })
+      .addCase(getByName.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(getDetail.fulfilled, (state, action) => {
+        state.details = action.payload;
       })
   },
 });

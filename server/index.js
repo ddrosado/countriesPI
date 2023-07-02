@@ -11,7 +11,7 @@ server.listen(PORT, async () => {
     const apiCountries = apiResponse.data.map((e) => {
       return {
         name: e.name.common,
-        id: e.ccn3,
+        id: e.cca3,
         image: e.flags.png,
         continent: e.continents[0],
         capital: e.capital ? e.capital[0] : 'no capital',
