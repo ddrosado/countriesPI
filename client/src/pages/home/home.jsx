@@ -1,5 +1,5 @@
 import './home.styles.css'
-import Cards from '../../components/cards/cards.component'
+import Cards from '../../components/cards/Cards.component'
 import Navbar from '../../components/navbar/Navbar.component'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ function Home() {
   const dispatch = useDispatch();
   const allCountries = useSelector(state => state.countries.countries);
   
+//pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage] = useState(9);
   
@@ -29,7 +30,6 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <div className='home-container'></div>
       <Cards currentCountries={currentCountries} />
       <Pagination
         pagination={pagination}

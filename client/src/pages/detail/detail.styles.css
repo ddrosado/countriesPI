@@ -1,0 +1,92 @@
+.country-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    width: 71vw;
+    height: 40vw;
+    margin: auto;
+    padding: auto;
+    font-family: 'Poppins', sans-serif; 
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #f5f5f500;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .detail-container{
+    margin: auto;
+  }
+
+  .empty-box-detail{
+    width: 90vw;
+    height: 10vh;
+  }
+
+  .country-details{
+    font-weight: 400;
+    color: #171717;
+   }
+
+
+/* ------------------------------ flag ratio 3:2------------------------------ */
+
+.detail-flag{
+    display: flex;
+    width: 440px;
+}
+  
+.flag-class{ 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    object-fit: cover;
+}
+
+/* ------------------------------ grid ------------------------------ */
+
+.parent {
+    display: grid;
+    width: 70vw;
+    height: 45vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 0px;
+    color: #171717;
+    padding: 3rem 2rem 2rem 2rem;
+    }
+    
+.country-name { grid-area: 1 / 2 / 2 / 3; }
+.country-continents { grid-area: 2 / 2 / 3 / 3; }
+.detail-flag  { grid-area: 1 / 1 / 4 / 2; }
+.country-detail { grid-area: 3 / 2 / 4 / 3; }  
+
+/* ------------------------------ grids ------------------------------ */
+
+.country-name{
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+}
+
+.country-continent{
+    color: #3f3f46;
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+}
+
+.detail-class {
+    background-color: #e5e5e5; 
+    border: 3px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 2px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+ .detail-box{
+    padding: 8px;
+  }
+

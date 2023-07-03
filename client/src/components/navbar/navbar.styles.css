@@ -2,23 +2,25 @@
     position: absolute;
     width: 100%;
     height: 10vh;
-    margin: 0;
+    margin: auto;
     display: flex;
     justify-content: flex-end;
-    gap: 15px;
+    gap: 0px;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.484);
+    background-color: rgba(255, 255, 255, 0.233);
+    /* border: 1px solid yellow; */
 }
 
 .navbar-element{
     font-size: 1.1em;
-    margin: auto;
+    margin: 0;
     display: flex;
-    font-weight: 400;
     justify-content: flex-start;
     color: #e5e5e5;
     z-index: 2;
-    letter-spacing: 1px;
+    /* border: 1px solid green; */
+    width: 10vw;
+    height: 100%;
 }
 
 .social-media{
@@ -28,3 +30,64 @@
 .right{
     width: 10vh;
 }
+
+
+/* ------------------------- home ------------------------- */
+
+.home-container{
+    height: 65vh;
+    background-image: url("../../assets/images/colliseum.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    content: "";
+}
+
+.home-container::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    width: 100vh;
+    height: 30%;
+    background: linear-gradient(
+    to bottom,
+    rgb(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
+    );
+    z-index: 1;
+    }
+
+/* 004176 */
+
+.empty-box{
+    width: 100%;
+    height: 18vh;
+}
+
+/* ------------------------- home ------------------------- */
+
+.link-class {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .link-class:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .link{
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #322922;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }

@@ -18,10 +18,10 @@ const url = 'http://localhost:3001';
   
   export const getDetail = createAsyncThunk(
     'countries/getDetail',
-    async (id, { dispatch }) => {
+    async (id) => { // access the dispatch function from the Redux store
       try {
-        dispatch(loading());
         const response = await axios.get(`${url}/countries/${id}`);
+        console.log(response.data)
         return response.data;
       } catch (error) {
         console.log(error);
@@ -39,8 +39,7 @@ const url = 'http://localhost:3001';
         throw error.response.data.msg;
       }
     }
-  );
-  
+  );  
   
 // -------------------- activities --------------------
 

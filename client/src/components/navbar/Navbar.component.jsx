@@ -1,24 +1,45 @@
 import './navbar.styles.css'
+import Filter from '../filter/Filter.component';
+import { Link } from 'react-router-dom';
+
+
 function Navbar() {
 
   return (
-    <div className="navbar-container">
+<div>
+    <div className="home-container">
+    <Filter />
 
+<div className='navbar-container'>
       <div className='social-media'></div>
       <div className="navbar-element">
-        <p className='link-class'>Home</p>
+        <button className='link-class'>
+          <Link to="/home" className='link'>Home</Link>
+        </button>
       </div>
       <div className="navbar-element">
-        <p className='link-class'>Create</p>
+        <button className='link-class'>
+          <Link to="/create" className='link'>Create</Link>
+        </button>
       </div>
       <div className="navbar-element">
-        <p className='link-class'>About</p>
+        <button className='link-class'>
+          <Link to="/about" className='link'>About</Link>
+        </button>
       </div>
       <div className="navbar-element">
-        <p className='link-class'>Logout</p>
+        <button className='link-class'>
+          <Link to="/" className='link'>Logout</Link>
+        </button>
       </div>
 
+
       <div className='right'></div>
+    </div>
+
+    </div>
+
+    <div className='empty-box'></div>
     </div>
   );
 }

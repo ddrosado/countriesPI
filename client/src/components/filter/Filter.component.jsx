@@ -5,6 +5,7 @@ import { sortAscDesc, sortByContinent }  from '../../redux/slices';
 import { getCountries } from '../../redux/asyncActions';
 import SearchBar from '../search/Searchbar.component';
 
+
 function Filter() {
   const dispatch = useDispatch();
   const [selected, setSelected] = useState('');

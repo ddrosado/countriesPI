@@ -1,11 +1,15 @@
 import './create.styles.css'
+import Navbar from '../../components/navbar/Navbar.component';
 
 function Create() {
 
   return (
 
       <div>
-        <p>Create</p>
+            <Navbar/>
+        <form>
+          <input></input>
+        </form>
       </div>
   )
 }

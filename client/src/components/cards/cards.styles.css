@@ -1,11 +1,12 @@
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-gap: 55px;
-    width: 70vw;
-    padding: 60px 180px 0px 180px; /* arriba, izq, abajo, der */
-    justify-items: center; 
-    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 71vw;
+    margin: auto;
+    font-family: 'Poppins', sans-serif; 
+    gap: 40px;
   }
   
   .card {
@@ -25,6 +26,7 @@
     width: 273px; 
     height: 200px; 
     margin: auto;
+    border-radius: 8px 8px 0px 0px;
   }
   
   .card-details {
