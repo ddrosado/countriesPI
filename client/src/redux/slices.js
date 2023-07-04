@@ -1,4 +1,4 @@
-import { getByName, getCountries, getDetail } from "./asyncActions";
+import { getActivity, getByName, getCountries, getDetail, postActivity } from "./asyncActions";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -46,7 +46,8 @@ const countriesSlice = createSlice({
       const activityFilter = action.payload === ''
         ? allActivities.filter(e => e.activities.length > 0)
         : allActivities.filter(c => c.activities.find((element) => element.name.toLowerCase() === action.payload));
-      state.countries = activityFilter;
+      state.activities = activityFilter;
+      console.log(action.payload);
     },
   },
   // extraReducers: additional actions to be taken based on the results of asynchronous operations
@@ -58,7 +59,7 @@ const countriesSlice = createSlice({
         state.countries = action.payload;
         state.continents = action.payload;
         state.population = action.payload;
-        state.activities = action.payload;
+        // state.activities = action.payload;
       })
       .addCase(getCountries.rejected, (state, action) => {
         state.error = action.error.message;
@@ -71,6 +72,13 @@ const countriesSlice = createSlice({
       })
       .addCase(getDetail.fulfilled, (state, action) => {
         state.details = action.payload;
+      })
+      .addCase(postActivity.fulfilled, (state, action) => {
+        const newActivity = action.payload;
+        state.activities.push(newActivity);
+      })
+      .addCase(getActivity.fulfilled, (state, action) => {
+        state.activities = action.payload;
       })
   },
 });

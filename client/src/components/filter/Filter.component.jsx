@@ -1,9 +1,9 @@
 import './filter.styles.css';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { sortAscDesc, sortByContinent }  from '../../redux/slices';
-import { getCountries } from '../../redux/asyncActions';
-import SearchBar from '../search/Searchbar.component';
+import { useDispatch, useSelector } from 'react-redux';
+import { sortAscDesc, sortByActivity, sortByContinent }  from '../../redux/slices';
+import { getActivity, getCountries } from '../../redux/asyncActions';
+
 
 
 function Filter() {
@@ -12,8 +12,14 @@ function Filter() {
 
   useEffect(() => {
     dispatch(getCountries());
+    dispatch(getActivity())
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(sortByActivity());
+  }, [dispatch]);
+
+  const allActivities = useSelector((state) => state.countries.activities);
 
   function handleOrder(e) {
     e.preventDefault();
@@ -33,6 +39,18 @@ function Filter() {
     dispatch(sortByContinent(e.target.value));
   }
 
+  function handleActivities(e) {
+    e.preventDefault();
+    dispatch(sortByActivity(e.target.value))
+    dispatch(getActivity()); 
+  }
+
+
+
+
+
+
+// render de orden por población
   function renderSortingPopulation() {
     if (selected === 'population' || selected === '') {
       return (
@@ -48,6 +66,8 @@ function Filter() {
     }
   }
 
+  
+// render de orden alfabético
     function renderSortingNames() {
     if (selected === 'name') {
       return (
@@ -63,8 +83,63 @@ function Filter() {
     }
   }
 
+
+  
+// render de filtros por continente
+function renderContinentFilter(){
+  if (selected === 'population' || selected === '' || selected == 'name') {
+  return(
+    <div className='select-container'>
+    <p className='select-text'>Continentes</p>
+    <select onChange={handleContinents} className='select-class'>
+      <option value=''>Ver todo</option>
+      <option value='Asia'>Asia</option>
+      <option value='Africa'>África</option>
+      <option value='Europe'>Europa</option>
+      <option value='South America'>América del Sur</option>
+      <option value='North America'>América del Norte</option>
+      <option value='Oceania'>Oceanía</option>
+      <option value='Antarctica'>Antártica</option>
+    </select>
+  </div>
+  )
+  }
+}
+
+
+
+// render de filtro por actividad
+function renderActivitiesFilter(){
+  if(selected === 'activities'){
+    return(
+    <div className='select-container'>
+    <p className='select-text'>Filtrar por actividad</p>
+
+    <select onChange={handleActivities} className='select-class'>
+    <option value=''>Ver todo</option>
+  {allActivities.map((option) => (
+    <option key={option.name}>{option.name}</option>
+  ))}
+
+    
+  </select>
+    
+    </div>
+    )
+
+  }
+}
+
+
+
   return  (
-    <><div className='filters-container'>
+    <>
+   
+    
+    <div className='filters-container'>
+
+
+
       {/* sorting option */}
       <div className='select-container'>
         <p className='select-text'>Filtrar por</p>
@@ -72,6 +147,7 @@ function Filter() {
           <option value=''>Ver todo</option>
           <option value='name'>Nombre</option>
           <option value='population'>Población</option>
+          <option value='activities'>Actividades</option>
         </select>
       </div>
 
@@ -80,24 +156,14 @@ function Filter() {
       {renderSortingNames()}
 
       {/* continent */}
+      {renderContinentFilter()}
+
+      {/* activities */}
+      {renderActivitiesFilter()}
       <div className='select-container'>
-        <p className='select-text'>Continentes</p>
-        <select onChange={handleContinents} className='select-class'>
-          <option value=''>Ver todo</option>
-          <option value='Asia'>Asia</option>
-          <option value='Africa'>África</option>
-          <option value='Europe'>Europa</option>
-          <option value='South America'>América del Sur</option>
-          <option value='North America'>América del Norte</option>
-          <option value='Oceania'>Oceanía</option>
-          <option value='Antarctica'>Antártica</option>
-        </select>
-      </div>
+
+
     
-      <div className='select-container'>
-
-
-    <SearchBar />
     </div>
     
     

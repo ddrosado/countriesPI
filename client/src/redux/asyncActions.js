@@ -47,7 +47,7 @@ const url = 'http://localhost:3001';
     'countries/postActivity',
     async (payload) => {
       try {
-        const response = await axios.post('https://renataloustalet.com.ar/apicountries/activity/', payload);
+        const response = await axios.post(`${url}/activities`, payload);
         return response.data;
       } catch (error) {
         console.log(error);
@@ -59,7 +59,7 @@ const url = 'http://localhost:3001';
     'countries/getActivity',
     async () => {
       try {
-        const response = await axios.get(`${url}/activity`);
+        const response = await axios.get(`${url}/activities`);
         return response.data;
       } catch (error) {
         console.log(error);

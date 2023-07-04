@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCountries } from '../../redux/asyncActions';
+import { getActivity, getCountries } from '../../redux/asyncActions';
 
 import './card.styles.css';
 
@@ -11,6 +11,10 @@ function Card() {
 
   useEffect(() => {
     dispatch(getCountries());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getActivity());
   }, [dispatch]);
 
   return (
