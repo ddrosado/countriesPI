@@ -42,6 +42,23 @@ const handleChange = e => {
   // );
 }
 
+
+const handleSelect = (event) => {
+  const selected = event.target.value;
+  setFormData({
+    ...formData,
+    country: [selected],
+  });
+  console.log(country)
+};
+
+
+
+const countries = useSelector((state) => state.countries.countries);
+const activity = useSelector((state) => state.countries.activity);
+console.log(activity)
+
+
 const handleSubmit = e => {
   e.preventDefault();
   dispatch(postActivity(formData))
@@ -53,21 +70,6 @@ const handleSubmit = e => {
     country: []
   })
 };
-
-const handleSelect = (event) => {
-  const selected = event.target.value;
-    setFormData({
-      ...formData,
-      country: [...formData.country, selected],
-    });
-  }
-
-
-
-const countries = useSelector((state) => state.countries.countries);
-
-
-
 console.log(countries.id)
 
   return (
@@ -117,6 +119,7 @@ console.log(countries.id)
       {country.name}
       </option>
   ))}
+  
 </select>
   </label>
   </div>

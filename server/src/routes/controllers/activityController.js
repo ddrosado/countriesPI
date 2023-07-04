@@ -6,7 +6,7 @@ const { Activity, Country } = require("../../db")
 // GET | /activities, obtiene un arreglo de objetos, donde cada objeto es una actividad turística.
 router.get("/", async(req, res) => {
 try {
-    const activities = await Activity.findAll();
+    const activities = await Activity.findAll({ include: Country });
     console.log(activities);
     res.json(activities);
   } catch (error) {

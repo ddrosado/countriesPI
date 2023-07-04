@@ -42,13 +42,15 @@ const countriesSlice = createSlice({
     },
     // based on the selected activity or returns countries with any activity
     sortByActivity: (state, action) => {
-      const allActivities = state.activities;
-      const activityFilter = action.payload === ''
-        ? allActivities.filter(e => e.activities.length > 0)
-        : allActivities.filter(c => c.activities.find((element) => element.name.toLowerCase() === action.payload));
-      state.activities = activityFilter;
-      console.log(action.payload);
-    },
+      const selectedActivity = state.activity.filter((activity) => activity.name.toLowerCase() === action.payload.toLowerCase());
+      const countries = selectedActivity.flatMap((activity) => activity.Countries);
+
+    console.log(countries)
+        state.countries = countries;
+      },
+    getActivities: (state, action) => {
+      state.activity = action.payload;
+    }
   },
   // extraReducers: additional actions to be taken based on the results of asynchronous operations
   extraReducers: (builder) => {
@@ -59,7 +61,7 @@ const countriesSlice = createSlice({
         state.countries = action.payload;
         state.continents = action.payload;
         state.population = action.payload;
-        // state.activities = action.payload;
+        state.activities = action.payload;
       })
       .addCase(getCountries.rejected, (state, action) => {
         state.error = action.error.message;
@@ -78,10 +80,10 @@ const countriesSlice = createSlice({
         state.activities.push(newActivity);
       })
       .addCase(getActivity.fulfilled, (state, action) => {
-        state.activities = action.payload;
+        state.activity = action.payload;
       })
   },
 });
 
-export const { sortAscDesc, sortByPopulation, sortByContinent, sortByActivity } = countriesSlice.actions;
+export const { sortAscDesc, sortByPopulation, sortByContinent, sortByActivity, getActivities } = countriesSlice.actions;
 export default countriesSlice.reducer; 

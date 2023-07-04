@@ -1,7 +1,7 @@
 import './filter.styles.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sortAscDesc, sortByActivity, sortByContinent }  from '../../redux/slices';
+import { sortAscDesc, sortByActivity, sortByContinent, getActivities }  from '../../redux/slices';
 import { getActivity, getCountries } from '../../redux/asyncActions';
 
 
@@ -11,43 +11,47 @@ function Filter() {
   const [selected, setSelected] = useState('');
 
   useEffect(() => {
-    dispatch(getCountries());
-    dispatch(getActivity())
+    dispatch(getCountries())
+    dispatch(getActivities())
+    dispatch(getActivity()); ;
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(sortByActivity());
-  }, [dispatch]);
+  
 
-  const allActivities = useSelector((state) => state.countries.activities);
-
+  
   function handleOrder(e) {
     e.preventDefault();
     const value = e.target.value;
     setSelected(value);
     dispatch(sortAscDesc(value));
   }
-
+  
   function handleOrderPopulation(e) {
     e.preventDefault();
     const value = e.target.value;
     dispatch(sortAscDesc(value));
   }
- 
+  
   function handleContinents(e) {
     e.preventDefault();
     dispatch(sortByContinent(e.target.value));
   }
-
+  
   function handleActivities(e) {
     e.preventDefault();
     dispatch(sortByActivity(e.target.value))
-    dispatch(getActivity()); 
   }
+  
+  const allActivities = useSelector((state) => state.countries.activity);
 
+//   const letterIds = allActivities.flatMap((activity) =>
+//   activity.Countries.map((country) => country)
+// );
 
+// console.log(letterIds);
 
-
+  
+  
 
 
 // render de orden por población
@@ -118,7 +122,7 @@ function renderActivitiesFilter(){
     <select onChange={handleActivities} className='select-class'>
     <option value=''>Ver todo</option>
   {allActivities.map((option) => (
-    <option key={option.name}>{option.name}</option>
+    <option key={option.id} value={option.name}>{option.name}</option>
   ))}
 
     
