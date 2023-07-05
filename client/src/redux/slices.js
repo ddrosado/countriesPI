@@ -7,6 +7,7 @@ const initialState = {
   population: [],
   activities: [],
   activity: [],
+  activityDetail: [],
   details: [],
   error: "",
   loading: false
@@ -44,13 +45,11 @@ const countriesSlice = createSlice({
     sortByActivity: (state, action) => {
       const selectedActivity = state.activity.filter((activity) => activity.name.toLowerCase() === action.payload.toLowerCase());
       const countries = selectedActivity.flatMap((activity) => activity.Countries);
-
-    console.log(countries)
         state.countries = countries;
       },
     getActivities: (state, action) => {
       state.activity = action.payload;
-    }
+    },
   },
   // extraReducers: additional actions to be taken based on the results of asynchronous operations
   extraReducers: (builder) => {

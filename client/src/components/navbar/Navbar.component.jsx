@@ -33,11 +33,11 @@ function Navbar() {
         </button>
       </div>
 
-      <div className="navbar-element">
+      {/* <div className="navbar-element">
         <button className='link-class'>
           <Link to="/about" className='link'>About</Link>
         </button>
-      </div>
+      </div> */}
       
       <div className="navbar-element">
         <button className='link-class'>

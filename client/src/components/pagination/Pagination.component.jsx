@@ -24,7 +24,7 @@ for (let i = 0; i < totalPages; i++) {
       </li>
     ))}
     <li className="icon">
-      <a href="#">Next<span className="fas fa-angle-right"></span></a>
+      <a href="#">Next<span className="fas fa-angle-right" ></span></a>
     </li>
   </ul>
 </div>

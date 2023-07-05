@@ -45,7 +45,7 @@ const handleSelectCountries = (event) => {
   const selected = event.target.value;
   setFormData({
     ...formData,
-    country: [selected],
+    country: [...formData.country, selected], // multiple selection
   });
 };
 

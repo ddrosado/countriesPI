@@ -3,7 +3,7 @@ const server = require("./src/server");
 const { conn, Country } = require('./src/db.js');
 const PORT = 3001;
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: true }).then(() => { // delete items from db
 server.listen(PORT, async () => {
   const allCountries = Country.findAll();
   if(!allCountries.length){
