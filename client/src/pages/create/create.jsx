@@ -1,4 +1,4 @@
-import './create.styles.css'
+import styles from'./create.styles.css'
 import Navbar from '../../components/navbar/Navbar.component';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,41 +18,44 @@ useEffect(() => {
         dispatch(getActivity())
     }, [dispatch])
 
-// const [errors, setErrors] = useState({})
+const [validForm, setValidForm] = useState(false);
+const [errors, setErrors] = useState({})
 const[formData, setFormData] = useState({
   "name": "",
   "difficulty": "",
   "duration": "",
-  "season": "",
+  "season": "noseason",
   "country": []
 })
 
-const handleChange = e => {
+const handleChange = (e) => {
   const name = e.target.name;
   const value = e.target.value;
   setFormData({
-      ...formData, 
-      [name]: value
+    ...formData,
+    [name]: value
   });
-  // setErrors(
-  //     validation({
-  //     ...formData,
-  //     [name]: value
-  //     })
-  // );
-}
+  setErrors(validation({
+    ...formData, [name]: value
+  }));
+};
 
 
-const handleSelect = (event) => {
+const handleSelectCountries = (event) => {
   const selected = event.target.value;
   setFormData({
     ...formData,
     country: [selected],
   });
-  console.log(country)
 };
 
-
+const handleSelectSeason = (event) => {
+  const selected = event.target.value;
+  setFormData({
+    ...formData,
+    season: selected,
+  });
+};
 
 const countries = useSelector((state) => state.countries.countries);
 const activity = useSelector((state) => state.countries.activity);
@@ -61,7 +64,11 @@ console.log(activity)
 
 const handleSubmit = e => {
   e.preventDefault();
+  const formErrors = validation(formData);
+  setErrors(formErrors);
+  if (Object.keys(formErrors).length === 0) {
   dispatch(postActivity(formData))
+  }
   setFormData({
     name: "",
     difficulty: "",
@@ -70,47 +77,80 @@ const handleSubmit = e => {
     country: []
   })
 };
-console.log(countries.id)
+
+
+useEffect(() => {
+  setValidForm(Object.keys(errors).length === 0);
+}, [errors]);
+
+useEffect(() => {
+  setValidForm(false); // default 
+}, []);
 
   return (
 <div>
 <Navbar/>
-{console.log(formData)}
+
       <div className='form-container'> 
 
   <form onSubmit = {handleSubmit}>
     <div className='form-box'>
   <label>
     <p>Actividad</p>
-    <input type="text" name="name" value={formData.name} onChange={handleChange}/>
+    <input 
+    type="text" 
+    name="name" 
+    value={formData.name} 
+    onChange={handleChange}
+    placeholder="Nombre de la actividad"/> 
+      {errors.name && <p className={styles.error}>{errors.name}</p>}
   </label>
   </div>
 
   <div className='form-box'>
   <label>
     <p>Duración estimada (horas)</p>
-    <input type="text" name="duration" value={formData.duration} onChange={handleChange}/>
+    <input 
+    type="text" 
+    name="duration" 
+    value={formData.duration} 
+    onChange={handleChange}/>
+    {errors.duration && <p className={styles.error}>{errors.duration}</p>}
   </label>
   </div>
 
   <div className='form-box'>
   <label>
     <p>Dificultad</p>
-    <input type="text" name="difficulty" value={formData.difficulty} onChange={handleChange}/>
+    <input 
+    type="text" 
+    name="difficulty" 
+    value={formData.difficulty} 
+    onChange={handleChange}/>
+    {errors.difficulty && <p className={styles.error}>{errors.difficulty}</p>}
   </label>
   </div>
 
   <div className='form-box'>
   <label>
     <p>Temporada</p>
-    <input type="text" name="season" value={formData.season} onChange={handleChange}/>
+    <select 
+    name="season" 
+    onChange={handleSelectSeason} 
+    className='form-select'>
+      <option value="noseason">Todo el año</option>
+      <option value="invierno">Invierno</option>
+      <option value="verano">Verano</option>
+      <option value="otoño">Otoño</option>
+      <option value="primavera">Primavera</option>
+    </select>
   </label>
   </div>
 
   <div className='form-box'> 
   <label>
   <p>Países</p>
-  <select name="country" onChange={handleSelect} className='form-select'>
+  <select name="country" onChange={handleSelectCountries} className='form-select'>
   {countries.map((country) => (
     
     <option 
@@ -125,7 +165,7 @@ console.log(countries.id)
   </div>
 
   <div className='form-box'> 
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Submit" disabled={!validForm}/>
   </div>
 
 
@@ -139,66 +179,3 @@ console.log(countries.id)
 
 export default Create;
 
-
-
-
-
-/* <form>
-    <div className='form-box'>
-  <label>
-    <p>Actividad</p>
-    <input type="text" name="name" />
-  </label>
-  </div>
-
-
-  <div className='form-box'>
-  <label>
-  <p>Duración estimada (horas)</p>
-    <input type="number" name="duration" min="0" max="24"/>
-  </label>
-  </div>
-
-
-  <div className='form-box'>
-  <label>
-  <p>Dificultad</p>
-    <input type="range" name="difficulty" min="1" max="5" />
-  </label>
-  </div>
-
-  
-  <div className='form-box'> 
-  <label>
-  <p>Temporada</p>
-    <label>
-      <input type="radio" name="season" value="Spring" /> Primavera
-    </label>
-    <label>
-      <input type="radio" name="season" value="Summer" /> Verano
-    </label>
-    <label>
-      <input type="radio" name="season" value="Autumn" /> Otoño
-    </label>
-    <label>
-      <input type="radio" name="season" value="Winter" /> Invierno
-    </label>
-  </label>
-  </div>
-
-  
-  <div className='form-box'> 
-  <label>
-  <p>Países</p>
-    <select name="where">
-      <option value="option1">Option 1</option>
-      <option value="option2">Option 2</option>
-      <option value="option3">Option 3</option>
-    </select>
-  </label>
-  </div>
-  
-  <div className='form-box'> 
-  <input type="submit" value="Submit" />
-  </div>
-</form> */

@@ -18,7 +18,8 @@ router.get("/", async (req, res) => {
             name: {
               [Op.iLike]: `%${name.toLowerCase()}%` 
             }
-          }
+          },
+          include: Activity
         });
         if(countries.length === 0){
         res.status(404).send({ 'msg': 'No existe' })
@@ -38,8 +39,10 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
     try {
       const country = await Country.findByPk(id, {
-        attributes: ['id', 'name', 'image', 'continent', 'capital', 'subregion', 'area', 'population']
-      });
+        attributes: ['id', 'name', 'image', 'continent', 'capital', 'subregion', 'area', 'population'],
+        include: Activity
+      },
+      );
       res.json(country)
     }
     catch(error){

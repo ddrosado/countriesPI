@@ -7,7 +7,7 @@
     justify-content: flex-end;
     gap: 0px;
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.489);
+    background-color: #2e272153;
     /* border: 1px solid yellow; */
 }
 
@@ -85,9 +85,9 @@
   .link{
     text-decoration: none;
     font-family: 'Poppins', sans-serif; 
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 400;
-    color: #322922;
+    color: #e5e5e5c5;
     letter-spacing: 1px;
     text-transform: uppercase;
   }

@@ -1,41 +1,35 @@
-export default function validation (input){
-
-const error = {}
-const numberRegex = /^\d+$/;
-const durationRegex = /^[1-5]$/;
-
+export default function validation(input) {
+    const error = {};
+    const letterRegex = /^[A-Za-z\s]{0,35}$/;
+    const durationRegex = /^(?:[1-9]|1\d|2[0-4])$/; // 1 al 24
+    const difficultyRegex = /^[1-5]+$/; // 1 al 5
+  
 // nombre de la actividad
-if(input.name.length < 1){
-error.shortname = "Debe contener al menos un caracter"
+if (!letterRegex.test(input.name)) {
+    error.name = "Introduzca solo letras";
 }
 if(input.name.length > 30){
-error.longname = "Se han sobrepasado la cantidad de caracteres"
+    error.name = "Se superaron los caracteres máximos"
+}
+if(input.name.length < 3){
+    error.name = "Introduzca el nombre de la actividad"
 }
 
 // duración
-if(input.duration <= 0){
-error.duration = "Debe tener una duración mínima de una hora"
-}
-if(input.duration > 24){
-error.duration = "Debe tener una duración máxima de 24 horas"
-}
-if(!numberRegex.test(input.duration)){
-error.string = "Introduzca un número del 1 al 24"
+if (!durationRegex.test(input.duration)) {
+    error.duration = "Introduzca un número del 1 al 24";
 }
 
 // dificultad
-if(!durationRegex.test(input.difficulty)){
-error.range = "Introduzca un número del 1 al 5"
+if (!difficultyRegex.test(input.difficulty)) {
+    error.difficulty = "Introduzca un número del 1 al 5";
 }
 
 // temporada
-if (input.season.toLowerCase() !== 'verano' &&
-    input.season.toLowerCase() !== 'otoño' &&
-    input.season.toLowerCase() !== 'invierno' &&
-    input.season.toLowerCase() !== 'primavera' ) {
-    error.season = "Introduzca una estación del año"
-}
-return error;
+const validSeasons = ["verano", "otoño", "invierno", "primavera", "noseason"];
+if (!validSeasons.includes(input.season.toLowerCase())) {
+    error.season = "Introduzca una estación del año";
 }
 
-
+  return error;
+}
