@@ -19,7 +19,7 @@ const countriesSlice = createSlice({
   initialState,
   reducers: {
     // based on the given order ('Asc' or 'Desc')
-    // based on population in ascending or descending order
+    //  or based on population in ascending or descending order
     sortAscDesc: (state, action) => {
       let orderCountries;
       if (action.payload === 'asc') {
@@ -27,11 +27,11 @@ const countriesSlice = createSlice({
       } else if (action.payload === 'desc') {
         orderCountries = state.countries.sort((a, b) => b.population - a.population);
       } else if (action.payload === 'alphabeticDesc') {
-        orderCountries = state.countries.sort((a, b) => b.name.localeCompare(a.name));
+        orderCountries = state.countries.sort((a, b) => b.name.localeCompare(a.name)); // 1, 0, -1
       } else if (action.payload === 'alphabeticAsc') {
         orderCountries = state.countries.sort((a, b) => a.name.localeCompare(b.name));
       }    
-      state.population = [...orderCountries];
+      state.population = [...orderCountries]; // creates a new array by copying all the elements from the array
     },
     // based on the selected continent or returns all continents
     sortByContinent: (state, action) => {
@@ -44,9 +44,10 @@ const countriesSlice = createSlice({
     // based on the selected activity or returns countries with any activity
     sortByActivity: (state, action) => {
       const selectedActivity = state.activity.filter((activity) => activity.name.toLowerCase() === action.payload.toLowerCase());
-      const countries = selectedActivity.flatMap((activity) => activity.Countries);
-        state.countries = countries;
+      const countries = selectedActivity.flatMap((activity) => activity.Countries); // flatten a nested array structure
+      state.countries = countries;
       },
+      // update the list of activities
     getActivities: (state, action) => {
       state.activity = action.payload;
     },
@@ -55,7 +56,7 @@ const countriesSlice = createSlice({
   extraReducers: (builder) => {
     builder
    // addCase: method provided by the builder object to define actions based on different cases or conditions
-      .addCase(getCountries.fulfilled, (state, action) => { // when getCountries is fulfilled
+      .addCase(getCountries.fulfilled, (state, action) => { 
         state.error = "";
         state.countries = action.payload;
         state.continents = action.payload;
@@ -86,3 +87,19 @@ const countriesSlice = createSlice({
 
 export const { sortAscDesc, sortByPopulation, sortByContinent, sortByActivity, getActivities } = countriesSlice.actions;
 export default countriesSlice.reducer; 
+
+
+
+//  else if (action.payload === 'alphabeticDesc') {
+//   orderCountries = [...state.countries].sort((a, b) => {
+//     if (a.name > b.name) return -1;
+//     if (a.name < b.name) return 1;
+//     return 0;
+//   });
+// } else if (action.payload === 'alphabeticAsc') {
+//   orderCountries = [...state.countries].sort((a, b) => {
+//     if (a.name < b.name) return -1;
+//     if (a.name > b.name) return 1;
+//     return 0;
+//   });
+// }

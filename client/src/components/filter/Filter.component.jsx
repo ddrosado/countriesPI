@@ -44,11 +44,6 @@ function Filter() {
   
   const allActivities = useSelector((state) => state.countries.activity);
 
-//   const letterIds = allActivities.flatMap((activity) =>
-//   activity.Countries.map((country) => country)
-// );
-
-// console.log(letterIds);
 
   
   
@@ -120,7 +115,7 @@ function renderActivitiesFilter(){
     <p className='select-text'>Filtrar por actividad</p>
 
     <select onChange={handleActivities} className='select-class'>
-    <option value=''>Ver todo</option>
+    <option value=''>Seleccione una actividad</option>
   {allActivities.map((option) => (
     <option key={option.id} value={option.name}>{option.name}</option>
   ))}

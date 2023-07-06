@@ -1,5 +1,4 @@
 import './cards.styles.css'
-import Card from '../card/Card.component';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -10,7 +9,6 @@ function Cards({currentCountries}) {
   return (
 
       <div className='cards-container'>
-     <Card/>
      <div className='card-container'>
      {currentCountries.map((country) => (
           <div key={country.id} className='card'>

@@ -102,8 +102,9 @@ useEffect(() => {
     name="name" 
     value={formData.name} 
     onChange={handleChange}
-    placeholder="Nombre de la actividad"/> 
-      {errors.name && <p className={styles.error}>{errors.name}</p>}
+    placeholder="Nombre de la actividad"
+    className='input-class'/> 
+      {errors.name && <p className="error">{errors.name}</p>}
   </label>
   </div>
 
@@ -114,8 +115,10 @@ useEffect(() => {
     type="text" 
     name="duration" 
     value={formData.duration} 
-    onChange={handleChange}/>
-    {errors.duration && <p className={styles.error}>{errors.duration}</p>}
+    onChange={handleChange}
+    placeholder="Duración"
+    className='input-class'/>
+    {errors.duration && <p className="error">{errors.duration}</p>}
   </label>
   </div>
 
@@ -126,8 +129,10 @@ useEffect(() => {
     type="text" 
     name="difficulty" 
     value={formData.difficulty} 
-    onChange={handleChange}/>
-    {errors.difficulty && <p className={styles.error}>{errors.difficulty}</p>}
+    onChange={handleChange}
+    placeholder="1-5"
+    className='input-class'/>
+    {errors.difficulty && <p className="error">{errors.difficulty}</p>}
   </label>
   </div>
 
@@ -165,7 +170,9 @@ useEffect(() => {
   </div>
 
   <div className='form-box'> 
-  <input type="submit" value="Submit" disabled={!validForm}/>
+  <div className='button-container'>
+  <button type="submit" value="Submit" disabled={!validForm} className='button-class'>Crear</button>
+  </div>
   </div>
 
 
@@ -173,8 +180,11 @@ useEffect(() => {
 
 
       </div>
+      <div className='empty-box'></div>
       </div>
+    
   )
+  
 }
 
 export default Create;

@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
           include: [
             {
               model: Country,
-              through: { attributes: [] },
+              through: { attributes: [] }, // exclude the intermediate table attributes
             },
           ],
         });

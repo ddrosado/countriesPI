@@ -14,6 +14,11 @@ function Navbar() {
 
 <div className='navbar-container'>
 
+<div className='home-header'>
+  <h1 className='home-title'>
+    Countries
+  </h1>
+</div>
 
 <div className='social-media'></div>
 
@@ -29,7 +34,7 @@ function Navbar() {
 
       <div className="navbar-element">
         <button className='link-class'>
-          <Link to="/create" className='link'>Create</Link>
+          <Link to="/create" className='link'>Crear</Link>
         </button>
       </div>
 

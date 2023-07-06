@@ -39,7 +39,7 @@ function SearchBar() {
           </g>
         </svg>
       </button>
-      {notFound && <p>Not found</p>}
+      {notFound && <p className='not-found'>No se encontró un país con ese nombre</p>}
     </form>
   );
 }

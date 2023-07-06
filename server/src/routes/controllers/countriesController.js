@@ -16,7 +16,8 @@ router.get("/", async (req, res) => {
         countries = await Country.findAll({
           where: {
             name: {
-              [Op.iLike]: `%${name.toLowerCase()}%` 
+              [Op.iLike]: `%${name.toLowerCase()}%` // operator used in the query performs case-insensitive search
+              // search for in the database, % to match any sequence of characters before and after the name value
             }
           },
           include: Activity
@@ -54,6 +55,11 @@ router.get("/:id", async (req, res) => {
 
 
 module.exports = router;
+
+
+
+
+
 
 
 

@@ -19,14 +19,7 @@ function Detail() {
 
 
 const detail = useSelector(state => state.countries.details);
-  // console.log(detail2)
-  // const detail2 = useSelector(state => state.countries.activity);
-  // console.log(detail2)
-  const activities = detail.Activities;
-  console.log(activities)
-  
-
-
+const activities = detail.Activities;
 
 
 return (
@@ -39,7 +32,7 @@ return (
       <img src={detail.image} className='flag-class'/>
       </div>
 
-    <div className='country-name'>
+    <div className='detail-country-name'>
       <h1 className='detail-name'>{detail.name}</h1></div>
       <div className='country-continent'><h2>{detail.continent}</h2></div>
       <div className='country-details'>
@@ -50,10 +43,11 @@ return (
     </div>   
     </div>
     
-    
+    <hr></hr>
     <div className='activities-container'>
-      <div className='activities-title'><h1>Actividades</h1></div>
       
+      <div className='activities-title'><h1>Actividades</h1></div>
+      {activities && activities.length === 0 ? <p>No se encontraron actividades para este país</p> : null}
   {activities  ? (
     activities.map(activity => (
       <div className='activity' key={activity.id}>
@@ -64,12 +58,12 @@ return (
         
         <div className='activity-container'>
           <p className='activities-box'>
-            <span className='activities-class'>Dificultad </span> {activity.difficulty}
+            <span className='activities-class'>Dificultad</span> {activity.difficulty}
           </p>
           
           <div className='activity-container'>
           <p className='activities-box'>
-          <span className='activities-class'>Duración </span>
+          <span className='activities-class'>Duración</span>
           {activity.duration === "1" ? (
           <span>{activity.duration} hora</span>
         ) : (
@@ -79,7 +73,7 @@ return (
 
           <div className='activity-container'>
           <p className='activity-container'>
-            <span className='activities-class'>Temporada </span> 
+            <span className='activities-class'>Temporada</span> 
             {activity.season === "noseason" ? 
             'Disponible todo el año' 
             : activity.season} 

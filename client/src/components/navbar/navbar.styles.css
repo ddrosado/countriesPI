@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
+
 .navbar-container{
     position: absolute;
     width: 100%;
@@ -7,7 +9,7 @@
     justify-content: flex-end;
     gap: 0px;
     z-index: 1;
-    background-color: #231e19be;
+    background-color: #ffffffbe;
     /* border: 1px solid yellow; */
 }
 
@@ -33,7 +35,7 @@
 
 .home-container{
     height: 60vh;
-    background-image: url("../../assets/images/colliseum.jpg");
+    background-image: url("../../assets/images/tajmahal.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -48,11 +50,6 @@
     top: 0;
     width: 100vh;
     height: 30%;
-    background: linear-gradient(
-    to bottom,
-    rgb(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0)
-    );
     z-index: 1;
     }
 
@@ -76,7 +73,7 @@
   }
   
   .link-class:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #0ea4e94c;
   }
 
   .link{
@@ -84,8 +81,31 @@
     font-family: 'Poppins', sans-serif; 
     font-size: 1.1rem;
     font-weight: 400;
-    color: #e5e5e5c5;
+    color: #525252;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
 
+.right{
+    width: 10px;
+}
+
+/* ------------------------- header ------------------------- */
+
+.home-header{
+    display: flex;
+    position: absolute;
+    width: 100vw;
+    height: 60vh;
+
+}
+
+
+.home-title{
+    font-size: 8rem;
+    color:#fafafa;
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.594),0px 0px 15px rgba(0, 0, 0, 0.479);
+    font-family: 'Carattere', cursive;
+    margin: auto;
+    user-select: none;
+}

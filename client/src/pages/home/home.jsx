@@ -16,12 +16,20 @@ function Home() {
   const [countriesPerPage] = useState(9);
   
   const pagination = (num) => {
-    setCurrentPage(num);
+    setCurrentPage(num); // update the currentPage state when a pagination button is clicked
   };
   
-  const lastCountryIndex = currentPage * countriesPerPage;
-  const firstCountryIndex = lastCountryIndex - countriesPerPage;
-  const currentCountries = allCountries.slice(firstCountryIndex, lastCountryIndex);
+  const lastCountryIndex = currentPage * countriesPerPage; // index of the last country to be displayed on the current page
+  const firstCountryIndex = lastCountryIndex - countriesPerPage; // index of the first country to be displayed on the current page
+  const currentCountries = allCountries.slice(firstCountryIndex, lastCountryIndex); // subset of countries to be displayed on the current page
+  
+  const nextPage = (page) => {
+    setCurrentPage(page + 1); // update the currentPage state when the "Next" button is clicked
+  };
+
+  const prevPage = (page) => {
+    setCurrentPage(page - 1); 
+  };
   
   useEffect(() => {
     dispatch(getCountries());
@@ -30,12 +38,15 @@ function Home() {
   return (
     <div>
       <Navbar />
+      
       <Cards currentCountries={currentCountries} />
       <Pagination
         pagination={pagination}
         allCountries={allCountries.length}
         countriesPerPage={countriesPerPage}
         currentPage={currentPage}
+        nextPage={nextPage}
+        prevPage={prevPage}
       />
     </div>
   );
